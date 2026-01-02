@@ -1,0 +1,66 @@
+package main
+
+import "fmt"
+
+// 1. Daraxt tuguni tuzilmasi
+type TreeNode struct {
+	Val   int
+	Left  *TreeNode
+	Right *TreeNode
+}
+
+// 2. Masala yechimi funksiyasi
+func findTarget(root *TreeNode, k int) bool {
+	seen := make(map[int]bool)
+
+	var dfs func(node *TreeNode) bool
+	dfs = func(node *TreeNode) bool {
+		if node == nil {
+			return false
+		}
+
+		complement := k - node.Val
+		if seen[complement] {
+			return true
+		}
+
+		seen[node.Val] = true
+
+		return dfs(node.Left) || dfs(node.Right)
+	}
+
+	return dfs(root)
+}
+
+// 3. Massivdan daraxt yasash uchun yordamchi funksiya (Sizga VS Code-da sinash uchun kerak)
+func insertNode(root *TreeNode, val int) *TreeNode {
+	if root == nil {
+		return &TreeNode{Val: val}
+	}
+	if val < root.Val {
+		root.Left = insertNode(root.Left, val)
+	} else {
+		root.Right = insertNode(root.Right, val)
+	}
+	return root
+}
+
+func main() {
+	// Misol: root = [5,3,6,2,4,7], k = 9
+	// Daraxtni quramiz
+	var root *TreeNode
+	values := []int{5, 3, 6, 2, 4, 7}
+	for _, v := range values {
+		root = insertNode(root, v)
+	}
+
+	k := 9
+	result := findTarget(root, k)
+
+	// Natijani chiqaramiz
+	if result {
+		fmt.Printf("Yig'indisi %d ga teng bo'lgan ikkita son topildi!\n", k)
+	} else {
+		fmt.Printf("Afsus, %d yig'indisini beruvchi sonlar yo'q.\n", k)
+	}
+}
