@@ -1,0 +1,38 @@
+package main 
+import "fmt"
+func main() {
+    s := "abaccb"
+    dist := make([]int, 26)
+    dist[0] = 1 // a uchun
+    dist[1] = 3 // b uchun
+    dist[2] = 0 // c uchun
+    // qolganlari 0 bo'lib turaversin
+
+    fmt.Println(checkDistances(s, dist)) // Natija: true
+}
+
+func checkDistances(s string, distance []int) bool {
+  
+    firstOccurrence := make([]int, 26)
+    for i := range firstOccurrence {
+        firstOccurrence[i] = -1
+    }
+
+    for i := 0; i < len(s); i++ {
+        
+        charIndex := int(s[i] - 'a')
+        
+        if firstOccurrence[charIndex] == -1 {
+            firstOccurrence[charIndex] = i
+        } else {
+            
+            actualDist := i - firstOccurrence[charIndex] - 1
+            
+            if actualDist != distance[charIndex] {
+                return false
+            }
+        }
+    }
+
+    return true
+}
