@@ -1,0 +1,36 @@
+package main 
+
+import (
+	"sort"
+)
+
+func main() {
+    nums := []int{4, 1, 4, 0, 3, 5}
+    fmt.Println(distinctAverages(nums)) // Natija: 2
+}
+
+func distinctAverages(nums []int) int {
+    // 1. Sonlarni tartiblab olamiz
+    sort.Ints(nums)
+    
+    // 2. Takrorlanmas natijalarni saqlash uchun map
+    averages := make(map[int]bool)
+    
+    left := 0
+    right := len(nums) - 1
+    
+    // 3. Ikki tomondan markazga qarab yuramiz
+    for left < right {
+        // Yig'indini hisoblaymiz (ikkiga bo'lish shartmas, 
+        // chunki yig'indi har xil bo'lsa, o'rtachasi ham har xil bo'ladi)
+        sum := nums[left] + nums[right]
+        averages[sum] = true
+        
+        // Ko'rsatkichlarni suramiz
+        left++
+        right--
+    }
+    
+    // 4. Map ichida nechta element borligini qaytaramiz
+    return len(averages)
+}
