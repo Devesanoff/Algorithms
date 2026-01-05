@@ -1,0 +1,13 @@
+func repeatedCharacter(s string) byte {
+    var mask int32 = 0
+    for i := 0; i < len(s); i++ {
+        charIdx := s[i] - 'a'
+        // charIdx-bitni tekshiramiz
+        if (mask >> charIdx) & 1 == 1 {
+            return s[i]
+        }
+        // charIdx-bitni 1 ga o'zgartiramiz
+        mask |= (1 << charIdx)
+    }
+    return 0
+}
