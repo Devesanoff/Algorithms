@@ -1,0 +1,19 @@
+func arithmeticTriplets(nums []int, diff int) int {
+    // 1. Sonlarni tez qidirish uchun map yaratamiz
+    // Xotira uchun: map[int]bool - O(n) xotira
+    exists := make(map[int]bool)
+    for _, num := range nums {
+        exists[num] = true
+    }
+
+    count := 0
+    // 2. Har bir sonni tekshiramiz
+    for _, num := range nums {
+        // Agar sonning o'zidan diff masofada oldingi va keyingi sonlar bo'lsa
+        if exists[num-diff] && exists[num+diff] {
+            count++
+        }
+    }
+
+    return count
+}
