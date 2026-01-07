@@ -1,0 +1,19 @@
+func firstUniqChar(s string) int {
+    // Harflarni sanash uchun "sanoq daftari" (26 ta kichik ingliz harfi uchun)
+    counts := [26]int{}
+
+    // Birinchi marta aylanib, hamma harflarni sanab chiqamiz
+    for i := 0; i < len(s); i++ {
+        counts[s[i]-'a']++
+    }
+
+    // 2. Ikkinchi marta aylanib, birinchi bo'lib sanoqi 1 bo'lgan harfni topamiz
+    for i := 0; i < len(s); i++ {
+        if counts[s[i]-'a'] == 1 {
+            return i
+        }
+    }
+
+    // Agar hamma harflar takrorlangan bo'lsa
+    return -1
+}
