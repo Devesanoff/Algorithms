@@ -2,14 +2,12 @@ package main
 
 import "fmt"
 
-// 1. Daraxt tuguni tuzilmasi
 type TreeNode struct {
 	Val   int
 	Left  *TreeNode
 	Right *TreeNode
 }
 
-// 2. Masala yechimi funksiyasi
 func findTarget(root *TreeNode, k int) bool {
 	seen := make(map[int]bool)
 
@@ -32,7 +30,6 @@ func findTarget(root *TreeNode, k int) bool {
 	return dfs(root)
 }
 
-// 3. Massivdan daraxt yasash uchun yordamchi funksiya (Sizga VS Code-da sinash uchun kerak)
 func insertNode(root *TreeNode, val int) *TreeNode {
 	if root == nil {
 		return &TreeNode{Val: val}
@@ -46,8 +43,7 @@ func insertNode(root *TreeNode, val int) *TreeNode {
 }
 
 func main() {
-	// Misol: root = [5,3,6,2,4,7], k = 9
-	// Daraxtni quramiz
+	
 	var root *TreeNode
 	values := []int{5, 3, 6, 2, 4, 7}
 	for _, v := range values {
@@ -57,7 +53,7 @@ func main() {
 	k := 9
 	result := findTarget(root, k)
 
-	// Natijani chiqaramiz
+	
 	if result {
 		fmt.Printf("Yig'indisi %d ga teng bo'lgan ikkita son topildi!\n", k)
 	} else {
