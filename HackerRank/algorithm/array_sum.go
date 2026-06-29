@@ -9,12 +9,6 @@ import (
     "strings"
 )
 
-/*
- * Complete the 'simpleArraySum' function below.
- *
- * The function is expected to return an INTEGER.
- * The function accepts INTEGER_ARRAY ar as parameter.
- */
 
 func simpleArraySum(ar []int32) int32 {
     
@@ -25,7 +19,7 @@ func simpleArraySum(ar []int32) int32 {
         sum += value
     }
     
-    // Umumiy yig'indini qaytaramiz
+   
     return sum
 }
 
