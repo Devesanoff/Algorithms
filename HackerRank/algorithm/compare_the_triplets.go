@@ -9,20 +9,13 @@ import (
     "strings"
 )
 
-/*
- * Complete the 'compareTriplets' function below.
- *
- * The function is expected to return an INTEGER_ARRAY.
- * The function accepts following parameters:
- * 1. INTEGER_ARRAY a
- * 2. INTEGER_ARRAY b
- */
+
 
 func compareTriplets(a []int32, b []int32) []int32 {
     var aliceScore int32 = 0
     var bobScore int32 = 0
 
-    // Elementlarni solishtirish
+    
     for i := 0; i < 3; i++ {
         if a[i] > b[i] {
             aliceScore++
